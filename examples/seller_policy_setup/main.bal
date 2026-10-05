@@ -59,6 +59,11 @@ public function main() returns error? {
         return;
     }
 
+    // The fulfillment policy below ships with USPS, which is valid only on the US marketplace
+    if marketplaceId != "EBAY_US" {
+        return error(string `Policy creation is supported only for EBAY_US, not ${marketplaceId}`);
+    }
+
     // Step 2: Create the fulfillment policy when it does not exist
     boolean hasFulfillment = existingFulfillment.some(policy => policy?.name == fulfillmentName);
     if hasFulfillment {

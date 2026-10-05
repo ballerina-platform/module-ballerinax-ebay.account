@@ -17,11 +17,16 @@ clientId = "<client-id>"
 clientSecret = "<client-secret>"
 refreshToken = "<refresh-token>"
 refreshUrl = "<oauth-token-url>"
-countryCode = "<two-letter-country-code, e.g. US>"
-jurisdictionId = "<sales-tax-jurisdiction-id>"
+countryCode = "<US or CA, e.g. US>"
+jurisdictionId = "<sales-tax-jurisdiction-id, e.g. AS>"
 salesTaxPercentage = "<tax-percentage, e.g. 7.5>"
+# shippingAndHandlingTaxed = false
 applyChanges = false
 ```
+
+Sales tax tables are available only for `US` and `CA`. For `US`, the only supported jurisdictions are the territories `AS` (American Samoa), `GU` (Guam), `MP` (Northern Mariana Islands), `PW` (Palau) and `VI` (US Virgin Islands); eBay collects sales tax for the states itself.
+
+When the jurisdiction already has an entry, the example keeps its `shippingAndHandlingTaxed` setting unless you set one. To create a new entry, set `shippingAndHandlingTaxed` explicitly.
 
 Updating the table changes the seller account, so the example only writes the entry when `applyChanges` is `true`. Otherwise it only prints the current table.
 

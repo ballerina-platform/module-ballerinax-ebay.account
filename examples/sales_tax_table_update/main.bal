@@ -27,6 +27,7 @@ configurable string refreshUrl = ?;
 configurable string countryCode = ?;
 configurable string jurisdictionId = ?;
 configurable string salesTaxPercentage = ?;
+configurable boolean? shippingAndHandlingTaxed = ();
 configurable boolean applyChanges = false;
 
 public function main() returns error? {
@@ -52,10 +53,23 @@ public function main() returns error? {
         return;
     }
 
-    // Step 2: Create or replace the entry of the jurisdiction
+    // Step 2: Create or replace the entry of the jurisdiction, keeping the existing
+    // shipping-and-handling setting unless one is configured
+    boolean? taxShipping = shippingAndHandlingTaxed;
+    if taxShipping is () {
+        foreach account:SalesTax entry in entries {
+            if entry?.salesTaxJurisdictionId == jurisdictionId {
+                taxShipping = entry?.shippingAndHandlingTaxed;
+                break;
+            }
+        }
+    }
+    if taxShipping is () {
+        return error(string `${countryCode}/${jurisdictionId} has no sales tax entry yet, so set shippingAndHandlingTaxed to create one`);
+    }
     check ebay->createOrReplaceSalesTax(countryCode, jurisdictionId, {contentType: "application/json"}, {
         salesTaxPercentage,
-        shippingAndHandlingTaxed: true
+        shippingAndHandlingTaxed: taxShipping
     });
 
     // Step 3: Read the entry back to confirm the change

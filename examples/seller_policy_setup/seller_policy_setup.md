@@ -22,7 +22,7 @@ policyNamePrefix = "<prefix-for-the-policy-names>"
 createPolicies = false
 ```
 
-Creating policies changes the seller account, so the example only creates them when `createPolicies` is `true`. Otherwise it only lists the existing policies.
+Creating policies changes the seller account, so the example only creates them when `createPolicies` is `true`. Otherwise it only lists the existing policies. Listing works for any marketplace, but creation is limited to `EBAY_US`, because the fulfillment policy ships with the USPS Priority Mail service.
 
 ## Run the example
 
