@@ -2,13 +2,24 @@
 
 The `ballerinax/ebay.account` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+1. **[Seller policy setup](https://github.com/ballerina-platform/module-ballerinax-ebay.account/tree/main/examples/seller_policy_setup)** - List the fulfillment, payment and return policies of a marketplace and create any that are missing.
+
+2. **[Sales tax table update](https://github.com/ballerina-platform/module-ballerinax-ebay.account/tree/main/examples/sales_tax_table_update)** - Review the sales tax table of a country, set the rate of one jurisdiction and read it back.
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
+1. Generate eBay credentials to authenticate the connector as described in the [Setup guide](https://central.ballerina.io/ballerinax/ebay.account/latest#setup-guide).
+
+2. For each example, create a `Config.toml` file with the related configuration. Here's an example of how your Config.toml file should look:
+
+```toml
+clientId = "<client-id>"
+clientSecret = "<client-secret>"
+refreshToken = "<refresh-token>"
+refreshUrl = "<oauth-token-url>"
+```
+
+Each example lists the additional values it needs in its own README.
 
 ## Running an example
 
